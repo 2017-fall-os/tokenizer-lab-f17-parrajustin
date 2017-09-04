@@ -9,6 +9,6 @@
  * freshly allocated null-terminated array of pointers to freshly
  * allocated strings containing each "token" from the input string"
  */
-char ** mytoc(char *str, char delim)
+char ** mytoc(char *str, char delim);
 
 #endif // BTREE_H_INCLUDED
