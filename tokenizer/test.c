@@ -59,8 +59,9 @@ void testingLoop() {
 
   printf("\nInput mode instructions:");
   printf("\n\t- String to tokenize is placed after the $ symbol, max 200 chars");
+  printf("\n\t- only ascii chars greater or equal to 32 are accepted");
   printf("\n\t- Tokenizer delimiter is placed after the # symbol, only single char");
-  printf("\n\t- if you delimiter consits of an empty string the default delimiter is \" \"");
+  printf("\n\t- if you delimiter consits of an empty string the default delimiter is \" \" or space or char value 32");
   printf("\n\t- data input overflow is removed");
   printf("\n\t- input \"exit\" to leave the program\n");
   while (1) {
@@ -74,6 +75,9 @@ void testingLoop() {
 
     printf("# ");
     readInput(d, 2);
+
+    printf("string to tokenize: %s\n", p);
+    printf("tokenizer delimiter: %s\n", d);
 
     char **tokensArry;
 
@@ -95,6 +99,7 @@ void testingLoop() {
   }
 
   free(p);
+  free(d);
 }
 
 void testCases() {
@@ -158,7 +163,6 @@ void testCases() {
   }
   freeUpArry(tokensArry);
 }
-
 
 int main() {
   printf("Justin Parra: tokenizer lab\n\n"); 
