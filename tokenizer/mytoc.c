@@ -55,12 +55,11 @@ char ** mytoc(char *str, char delim) {
       tokenStartIndex = -1;
       token[length] = '\0'; // add the null pointer to the token
     } else if (str[i] == '\0' && tokenStartIndex == -1) {
-      // this shouldn't happen
+      // really shouldn't happen, just in case
       break;
     }
   }
-  tokensArry[pointerArryLen] = '\0';
-
+  tokensArry[pointerArryLen] = (char *)0;
   return tokensArry;
 }
 
