@@ -10,8 +10,6 @@ char ** mytoc(char *str, char delim) {
   // ex: the delimiter is '0'
   // input: 0hello00world0test0    output -> hello,world,test instead of ,hello,,world,test,
   bool foundToken = false;
-
-  printf("%s\n", str);
   
   // first lets count the number of tokens
   for (int i = 0; ; i++) {
@@ -30,16 +28,12 @@ char ** mytoc(char *str, char delim) {
     }
   }
 
-  printf("%d test \n", pointerArryLen);
-
   char **tokensArry = (char **)malloc(sizeof(char *) * (pointerArryLen + 1)); // + 1 is for the null terminator
   int tokenIndex = 0;
 
   // now lets begin tokenizing 
   int tokenNum = 0;
-  printf("Start\n");
   for (int i = 0, tokenStartIndex = -1; tokenNum < pointerArryLen; i++) {
-    printf("%d %d %d\n", i, tokenStartIndex, tokenNum);
     if (str[i] != delim && tokenStartIndex == -1) {
       // first lets find a token and remember where the token starts
       tokenStartIndex = i;
@@ -48,31 +42,24 @@ char ** mytoc(char *str, char delim) {
       int length = i - tokenStartIndex;
 
       // malloc the token array
-      printf("\tlen: %d\n", length);
       char *token = (char *)malloc(sizeof(char) * (length + 1)); // + 1 is for the null terminator
 
       for (int j = tokenStartIndex, index = 0; j < i; j++, index++) { // copy over the chars to the token 
-        printf("\t%d\n", j);
         token[index] = str[j];
       }
       tokenNum++; // keeps track of the number of tokens we have done
 
       // add the token to the token array
-      printf("\ttoken: %s\n", token);
-      printf("\tindex: %d\n", tokenIndex);
       tokensArry[tokenIndex] = token;
-      printf("\ttoken: %s\n", tokensArry[tokenIndex]);
       tokenIndex++;
       tokenStartIndex = -1;
       token[length] = '\0'; // add the null pointer to the token
     } else if (str[i] == '\0' && tokenStartIndex == -1) {
       // this shouldn't happen
-      printf("Shouldn't Happen\n");
       break;
     }
   }
   tokensArry[pointerArryLen] = '\0';
-  printf("End\n");
 
   return tokensArry;
 }
