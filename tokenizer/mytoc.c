@@ -28,7 +28,7 @@ char ** mytoc(char *str, char delim) {
     }
   }
 
-  char **tokensArry = (char **)malloc(sizeof(char *) * (pointerArryLen + 1)); // + 1 is for the null terminator
+  char **tokensArry = (char **)malloc(sizeof(char *) * (pointerArryLen + 1)); // + 1 is for the zero pointer
   int tokenIndex = 0;
 
   // now lets begin tokenizing 
@@ -54,7 +54,7 @@ char ** mytoc(char *str, char delim) {
       tokenIndex++;
       tokenStartIndex = -1;
       token[length] = '\0'; // add the null pointer to the token
-    } else if (str[i] == '\0' && tokenStartIndex == -1) {
+    } else if (str[i] == '\0') {
       // really shouldn't happen, just in case
       break;
     }
